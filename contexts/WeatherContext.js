@@ -24,6 +24,8 @@ const WeatherProvider = ({ children }) => {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
+        setLoading(false);
+        setCurrentWeather(null);
         setError("Permission to access location was denied");
         return;
       }
